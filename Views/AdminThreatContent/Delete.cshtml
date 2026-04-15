@@ -1,0 +1,12 @@
+@model SAFORIX.Models.ThreatContent
+@{ Layout = "~/Views/Shared/_AdminLayout.cshtml"; ViewData["Title"] = "Delete Threat Content"; }
+<div class="admin-section">
+    <h2><i class="fas fa-trash"></i> Delete Threat Content</h2>
+    <p>Delete <strong>@Model.SectionKey</strong>?</p>
+    <form asp-action="Delete" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn-delete-confirm">Yes, Delete</button>
+        <a asp-action="Index" class="btn-cancel">Cancel</a>
+    </form>
+</div>

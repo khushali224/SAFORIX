@@ -1,0 +1,106 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "About Us";
+
+    var about    = ViewBag.AboutContent  as SAFORIX.Models.AboutPageContent;
+    var mvList   = ViewBag.MissionVision as List<SAFORIX.Models.MissionVision>    ?? new List<SAFORIX.Models.MissionVision>();
+    var howList  = ViewBag.HowItWorks    as List<SAFORIX.Models.HowItWorksStep>   ?? new List<SAFORIX.Models.HowItWorksStep>();
+    var journey  = ViewBag.Journey       as List<SAFORIX.Models.JourneyTimeline>  ?? new List<SAFORIX.Models.JourneyTimeline>();
+
+    int stepNum = 0;
+}
+
+<link rel="stylesheet" href="~/css/about/about.css" asp-append-version="true" />
+
+<!-- ═══════════════════════ HERO ═══════════════════════════ -->
+<section class="about-hero">
+    <div class="about-hero-inner">
+        <div class="about-hero-badge">🛡 About SAFORIX</div>
+        <h1>@(about?.Title ?? "About SAFORIX")</h1>
+        <p>@(about?.Description ?? "SAFORIX is an intelligent Security Analysis Framework designed to identify, evaluate, and prevent cyber threats before they cause damage.")</p>
+    </div>
+</section>
+
+<!-- ═══════════════════════ MISSION & VISION ═══════════════════════ -->
+<section class="mv-section">
+    <div class="section-header">
+        <h2>Our Mission &amp; Vision</h2>
+        <p class="section-sub">Purpose-driven security for a digital future</p>
+    </div>
+    <div class="mv-grid">
+        @if (mvList.Any())
+        {
+            @foreach (var mv in mvList)
+            {
+                <div class="mv-card @mv.Type.ToLower()">
+                    <div class="mv-icon">@(mv.Type == "Mission" ? "🎯" : "🌐")</div>
+                    <h3>@mv.Title</h3>
+                    <p>@mv.Description</p>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="mv-card mission"><div class="mv-icon">🎯</div><h3>Our Mission</h3><p>To proactively safeguard users against modern cyber threats with real-time, intelligent analysis.</p></div>
+            <div class="mv-card vision"><div class="mv-icon">🌐</div><h3>Our Vision</h3><p>A globally trusted cyber defense platform, empowering every user with transparent, scalable security.</p></div>
+        }
+    </div>
+</section>
+
+<!-- ═══════════════════════ HOW IT WORKS ═══════════════════════ -->
+<section class="how-section">
+    <div class="section-header">
+        <h2>How SAFORIX Works</h2>
+        <p class="section-sub">Intelligent security decision pipeline</p>
+    </div>
+    <div class="steps-flow">
+        @if (howList.Any())
+        {
+            @foreach (var step in howList)
+            {
+                stepNum++;
+                <div class="step-item">
+                    <div class="step-num">@stepNum</div>
+                    <div class="step-body">
+                        <h4>@step.StepTitle</h4>
+                        <p>@step.Description</p>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="step-item"><div class="step-num">1</div><div class="step-body"><h4>📥 Data Input</h4><p>URLs, device details, and behavioural signals are collected securely.</p></div></div>
+            <div class="step-item"><div class="step-num">2</div><div class="step-body"><h4>📊 Risk Evaluation</h4><p>Data is analysed using rule-based logic and multi-factor scoring.</p></div></div>
+            <div class="step-item"><div class="step-num">3</div><div class="step-body"><h4>👁 Behaviour Analysis</h4><p>Suspicious patterns are identified in real time against known baselines.</p></div></div>
+            <div class="step-item"><div class="step-num">4</div><div class="step-body"><h4>🛑 Security Decision</h4><p>Threats are classified and appropriate protective actions recommended.</p></div></div>
+        }
+    </div>
+</section>
+
+<!-- ═══════════════════════ JOURNEY TIMELINE ═══════════════════════ -->
+<section class="journey-section">
+    <div class="section-header">
+        <h2>Our Journey</h2>
+        <p class="section-sub">From concept to intelligent security platform</p>
+    </div>
+    <div class="timeline">
+        @if (journey.Any())
+        {
+            @foreach (var jt in journey)
+            {
+                <div class="timeline-item">
+                    <div class="timeline-year">@jt.Year</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-text">@jt.Description</div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="timeline-item"><div class="timeline-year">2024</div><div class="timeline-dot"></div><div class="timeline-text">Research, threat modelling, and architecture design.</div></div>
+            <div class="timeline-item"><div class="timeline-year">2025</div><div class="timeline-dot"></div><div class="timeline-text">Development of core scanning and behaviour modules.</div></div>
+            <div class="timeline-item"><div class="timeline-year">2026</div><div class="timeline-dot"></div><div class="timeline-text">Launch of SAFORIX with admin panel, dashboards, and reports.</div></div>
+        }
+    </div>
+</section>

@@ -1,0 +1,21 @@
+@model SAFORIX.Models.Registration
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Delete User";
+}
+
+<link rel="stylesheet" href="~/css/Admin/admin-form.css" />
+
+<section class="admin-form-page">
+    <h2>Delete User</h2>
+    <p class="delete-box">Are you sure you want to delete <strong>@Model.username</strong>?</p>
+
+    <form asp-action="DeleteConfirmed" method="post" asp-controller="AdminUsers">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="id" value="@Model.Id" />
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</section>

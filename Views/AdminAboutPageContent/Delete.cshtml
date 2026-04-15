@@ -1,0 +1,15 @@
+@model SAFORIX.Models.AboutPageContent
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Delete About Content";
+}
+<div class="admin-section">
+    <h2><i class="fas fa-trash"></i> Delete About Content</h2>
+    <p>Are you sure you want to delete: <strong>@Model.Title</strong>?</p>
+    <form asp-action="Delete" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn-delete-confirm">Yes, Delete</button>
+        <a asp-action="Index" class="btn-cancel">Cancel</a>
+    </form>
+</div>
