@@ -1,0 +1,117 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #050b16;
+    color: #e0f7ff;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* WRAPPER */
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.admin-sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, #020b18, #041527);
+    border-right: 1px solid rgba(0,229,255,0.2);
+    transition: width 0.3s ease;
+}
+
+/* LOGO */
+.sidebar-logo {
+    padding: 25px;
+    text-align: center;
+    color: #00e5ff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+    .sidebar-logo small {
+        display: block;
+        font-size: 12px;
+        opacity: 0.7;
+    }
+
+/* MENU */
+.sidebar-menu {
+    list-style: none;
+}
+
+    .sidebar-menu li a {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 25px;
+        color: #cfefff;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+        .sidebar-menu li a:hover {
+            background: rgba(0,229,255,0.15);
+            color: #00e5ff;
+            box-shadow: inset 4px 0 0 #00e5ff;
+        }
+
+.menu-title {
+    padding: 15px 25px 8px;
+    font-size: 11px;
+    opacity: 0.6;
+}
+
+/* SUBMENU */
+.has-submenu .submenu {
+    display: none;
+    background: rgba(0,0,0,0.25);
+}
+
+.has-submenu.open .submenu {
+    display: block;
+}
+
+.submenu a {
+    padding-left: 55px;
+    font-size: 14px;
+}
+
+/* LOGOUT */
+.logout a {
+    color: #ff6b6b;
+}
+
+/* COLLAPSED */
+.admin-sidebar.collapsed {
+    width: 80px;
+}
+
+    .admin-sidebar.collapsed span,
+    .admin-sidebar.collapsed small,
+    .admin-sidebar.collapsed .submenu {
+        display: none;
+    }
+
+/* CONTENT */
+.admin-content {
+    flex: 1;
+    padding: 30px;
+    transition: margin-left 0.3s;
+}
+
+.topbar {
+    margin-bottom: 20px;
+}
+
+#toggleSidebar {
+    background: none;
+    border: none;
+    color: #00e5ff;
+    font-size: 22px;
+    cursor: pointer;
+}

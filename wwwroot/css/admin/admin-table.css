@@ -1,0 +1,147 @@
+.admin-page {
+    animation: fadeIn 0.6s ease;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+    .page-header h1 {
+        color: #00e5ff;
+        text-shadow: 0 0 15px rgba(0,229,255,0.6);
+    }
+
+.btn-add {
+    background: linear-gradient(135deg, #00e5ff, #0077ff);
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+    .btn-add:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0,229,255,0.6);
+    }
+
+/* TABLE */
+.table-wrapper {
+    background: rgba(255,255,255,0.04);
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid rgba(0,229,255,0.2);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .admin-table th {
+        text-align: left;
+        padding: 14px;
+        color: #00e5ff;
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .admin-table td {
+        padding: 14px;
+        border-bottom: 1px dashed rgba(255,255,255,0.1);
+    }
+
+    .admin-table tr:hover {
+        background: rgba(0,229,255,0.08);
+    }
+
+/* ACTIONS */
+.actions a {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.btn-edit {
+    color: #00ffae;
+}
+
+.btn-delete {
+    color: #ff6b6b;
+}
+
+.no-data {
+    text-align: center;
+    opacity: 0.7;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/*////////*/
+.admin-page {
+    padding: 25px;
+}
+
+.page-header h1 {
+    color: #00e5ff;
+    margin-bottom: 20px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255,255,255,0.04);
+}
+
+    .admin-table th,
+    .admin-table td {
+        padding: 12px;
+        border-bottom: 1px solid rgba(0,229,255,0.2);
+    }
+
+    .admin-table th {
+        text-align: left;
+        color: #00e5ff;
+    }
+
+.url {
+    max-width: 350px;
+    word-break: break-all;
+}
+
+.badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+    .badge.safe,
+    .badge.very-safe {
+        background: rgba(0,255,170,0.2);
+        color: #00ffae;
+    }
+
+    .badge.suspicious {
+        background: rgba(255,200,0,0.2);
+        color: #ffd000;
+    }
+
+    .badge.high-risk,
+    .badge.risky,
+    .badge.scam,
+    .badge.danger {
+        background: rgba(255,0,80,0.2);
+        color: #ff6b6b;
+    }

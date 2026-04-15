@@ -1,0 +1,209 @@
+/* ================= DEVICE SCAN PAGE ================= */
+
+.device-scan-page {
+    min-height: calc(100vh - 120px); /* header + footer space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background: radial-gradient(circle at top, #0d1b2a, #020617);
+    animation: fadeIn 0.6s ease;
+    color: #ffffff;
+}
+
+    /* ================= SCAN CARD ================= */
+
+    .device-scan-page .scan-card {
+        width: 100%;
+        max-width: 960px;
+        padding: 34px;
+        border-radius: 22px;
+        background: linear-gradient(180deg, #0b1324, #050b16);
+        border: 1px solid rgba(0,229,255,0.35);
+        box-shadow: 0 0 40px rgba(0,229,255,0.25), inset 0 0 25px rgba(0,229,255,0.08);
+    }
+
+    /* ================= HEADER ================= */
+
+    .device-scan-page h1 {
+        margin-bottom: 6px;
+        font-size: 28px;
+        font-weight: 600;
+        color: #ffffff;
+        text-shadow: 0 0 18px rgba(0,229,255,0.9);
+    }
+
+    .device-scan-page .subtitle {
+        margin-bottom: 22px;
+        color: #b8e9ff;
+        font-size: 15px;
+    }
+
+    /* ================= FORM GRID ================= */
+
+    .device-scan-page .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-bottom: 18px;
+    }
+
+@media (max-width: 760px) {
+    .device-scan-page .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ================= FIELDS ================= */
+
+.device-scan-page .field label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #cfefff;
+}
+
+.device-scan-page input,
+.device-scan-page select {
+    width: 100%;
+    padding: 13px;
+    border-radius: 14px;
+    background: #050b16;
+    border: 1px solid rgba(0,229,255,0.3);
+    color: #ffffff;
+    outline: none;
+    font-size: 14px;
+}
+
+    .device-scan-page input:focus,
+    .device-scan-page select:focus {
+        border-color: #00e5ff;
+        box-shadow: 0 0 12px rgba(0,229,255,0.6);
+    }
+
+/* ================= CHECKBOX ================= */
+
+.device-scan-page .field.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(4,12,24,0.45);
+    border: 1px solid rgba(0,229,255,0.25);
+}
+
+    .device-scan-page .field.checkbox input {
+        width: auto;
+        transform: scale(1.1);
+    }
+
+    .device-scan-page .field.checkbox.danger {
+        border-color: rgba(255,61,113,0.45);
+        box-shadow: inset 0 0 12px rgba(255,61,113,0.15);
+    }
+
+/* ================= BUTTON ================= */
+
+.device-scan-page .primary-btn {
+    margin-top: 10px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 16px;
+    border: none;
+    background: linear-gradient(135deg, #00e5ff, #0077ff);
+    color: #000;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .device-scan-page .primary-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 22px rgba(0,229,255,0.7);
+    }
+
+/* ================= ERROR ================= */
+
+.device-scan-page .alert.error {
+    background: rgba(255,61,113,0.15);
+    border: 1px solid rgba(255,61,113,0.6);
+    padding: 12px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+    color: #ff9db3;
+}
+
+/* ================= RESULT BOX ================= */
+
+.device-scan-page .result-box {
+    margin-top: 26px;
+    padding: 22px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,229,255,0.3);
+}
+
+    /* Risk levels */
+    .device-scan-page .result-box.safe {
+        border-color: #00ffae;
+    }
+
+    .device-scan-page .result-box.suspicious {
+        border-color: #ffd000;
+    }
+
+    .device-scan-page .result-box.risky {
+        border-color: #ff003c;
+    }
+
+/* ================= RISK BAR ================= */
+
+.device-scan-page .risk-bar {
+    height: 12px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.15);
+    overflow: hidden;
+    margin: 12px 0;
+}
+
+.device-scan-page .risk-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.6s ease;
+    background: linear-gradient(90deg, #00ffae, #ffd000, #ff003c);
+}
+
+/* ================= TEXT ================= */
+
+.device-scan-page .risk-text {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.device-scan-page .result-msg {
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.device-scan-page .details p {
+    margin: 4px 0;
+    color: #b8e9ff;
+    font-size: 14px;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,169 @@
+/* ================= PAGE ================= */
+
+.behaviour-scan-page {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 16px;
+    animation: fadeIn 0.6s ease;
+    color: #ffffff;
+}
+
+/* ================= CARD ================= */
+
+.scan-card {
+    width: 100%;
+    max-width: 900px;
+    padding: 30px;
+    border-radius: 20px;
+    background: #0b1324;
+    border: 1px solid rgba(0,229,255,0.3);
+    box-shadow: 0 0 40px rgba(0,229,255,0.25);
+}
+
+.scan-title {
+    margin: 0;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0 0 16px rgba(0,229,255,0.8);
+}
+
+.scan-subtitle {
+    text-align: center;
+    margin-bottom: 22px;
+    color: #9edfff;
+}
+
+/* ================= FORM ================= */
+
+.scan-form .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+@media (max-width: 720px) {
+    .scan-form .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.field label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #cfefff;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: #050b16;
+    border: 1px solid rgba(0,229,255,0.3);
+    color: #fff;
+    outline: none;
+}
+
+/* ================= BUTTON ================= */
+
+.primary-btn {
+    margin-top: 18px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 16px;
+    border: none;
+    background: linear-gradient(135deg, #00e5ff, #0077ff);
+    color: #041018;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* ================= ALERT ================= */
+
+.alert.error {
+    background: rgba(255,61,113,0.15);
+    border: 1px solid rgba(255,61,113,0.5);
+    padding: 10px 12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+/* ================= RESULT ================= */
+
+.result-box {
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.05);
+}
+
+    .result-box.safe {
+        border: 1px solid #00ffae;
+    }
+
+    .result-box.suspicious {
+        border: 1px solid #ffd000;
+    }
+
+    .result-box.risky {
+        border: 1px solid #ff3d71;
+    }
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.risk-percent {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* ================= RISK BAR ================= */
+
+.risk-bar {
+    margin: 10px 0;
+    height: 10px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.15);
+    overflow: hidden;
+}
+
+.risk-fill {
+    height: 100%;
+    background: linear-gradient( 90deg, #00ffae, #00e5ff, #ffd000, #ff3d71 );
+}
+
+/* ================= TEXT ================= */
+
+.risk-text {
+    margin-bottom: 10px;
+}
+
+.details p {
+    margin: 4px 0;
+    color: #cfefff;
+}
+
+.result-msg {
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
