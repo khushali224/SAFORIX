@@ -1,0 +1,44 @@
+@using SAFORIX.Models
+@{
+    var topLevel = ViewBag.NavTopLevel as List<HeaderNavItem> ?? new List<HeaderNavItem>();
+    var children = ViewBag.NavChildren as Dictionary<int, List<HeaderNavItem>> ?? new Dictionary<int, List<HeaderNavItem>>();
+    var logoText = ViewBag.LogoText as string ?? "SAFORIX";
+    var tagline = ViewBag.Tagline as string ?? "Security Analysis Framework";
+}
+
+<header class="saforix-header">
+    <div class="saforix-logo">
+        <div class="logo-box">🛡</div>
+        <div class="logo-text">
+            <h1>@logoText</h1>
+            <span>@tagline</span>
+        </div>
+    </div>
+
+    <nav class="nav-menu">
+        @foreach (var item in topLevel)
+        {
+            var childList = item.Id > 0 && children.ContainsKey(item.Id) ? children[item.Id] : null;
+            if (childList != null && childList.Any())
+            {
+                <div class="dropdown">
+                    <button class="dropbtn">@item.DisplayText ▾</button>
+                    <div class="dropdown-content">
+                        @foreach (var child in childList)
+                        {
+                            <a asp-controller="@child.Controller" asp-action="@child.Action">@child.DisplayText</a>
+                        }
+                    </div>
+                </div>
+            }
+            else if (!string.IsNullOrEmpty(item.Controller) && !string.IsNullOrEmpty(item.Action))
+            {
+                <a asp-controller="@item.Controller" asp-action="@item.Action">@item.DisplayText</a>
+            }
+        }
+    </nav>
+
+    <div class="status">
+        <span class="dot"></span> Active
+    </div>
+</header>

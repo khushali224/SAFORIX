@@ -1,0 +1,34 @@
+﻿<header class="saforix-header">
+    <div class="saforix-logo">
+        <div class="logo-box">
+            🛡
+        </div>
+        <div class="logo-text">
+            <h1>SAFORIX</h1>
+            <span>Security Analysis Framework</span>
+        </div>
+
+    </div>
+
+    <nav class="nav-menu">
+        <a asp-controller="Home" asp-action="Index" class="active">Home</a>
+
+        <a asp-controller="About" asp-action="Index">About Us</a>
+
+        <div class="dropdown">
+            <button class="dropbtn">Services ▾</button>
+            <div class="dropdown-content">
+                <a asp-controller="Services" asp-action="UrlScan">URL Scan</a>
+                <a asp-controller="Services" asp-action="DeviceScan">Device Scan</a>
+                <a asp-controller="Services" asp-action="BehaviourScan">Behaviour Scan</a>
+            </div>
+        </div>
+
+        <a asp-controller="Threat" asp-action="Index">Threat Intelligence</a>
+    </nav>
+
+    <div class="status">
+        <span class="dot"></span>
+        Active
+    </div>
+</header>

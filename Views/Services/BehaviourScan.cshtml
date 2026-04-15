@@ -1,0 +1,91 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Behaviour Scan";
+}
+
+<link rel="stylesheet" href="~/css/services/behaviourscan.css" asp-append-version="true" />
+
+<section class="behaviour-scan-page">
+    <div class="scan-card">
+        <h1>🧠 Behaviour Scan</h1>
+        <p class="subtitle">Detect unusual login activity (demo form).</p>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert error">@ViewBag.Error</div>
+        }
+
+        <form method="post">
+            <div class="grid">
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="user@gmail.com" required />
+                </div>
+
+                <div class="field">
+                    <label>Login Time</label>
+                    <input type="datetime-local" name="loginTime" />
+                </div>
+
+                <div class="field">
+                    <label>Device Name</label>
+                    <input type="text" name="deviceName" placeholder="HP Laptop / Office PC" />
+                </div>
+
+                <div class="field">
+                    <label>Device Type</label>
+                    <select name="deviceType">
+                        <option value="">Select</option>
+                        <option>PC</option>
+                        <option>Laptop</option>
+                        <option>Mobile</option>
+                        <option>Unknown</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Operating System</label>
+                    <input type="text" name="operatingSystem" placeholder="Windows 11 / Android" />
+                </div>
+
+                <div class="field">
+                    <label>Browser</label>
+                    <input type="text" name="browser" placeholder="Chrome / Edge" />
+                </div>
+
+                <div class="field">
+                    <label>IP Address</label>
+                    <input type="text" name="ipAddress" placeholder="203.0.113.10" />
+                </div>
+
+                <div class="field">
+                    <label>Location</label>
+                    <input type="text" name="location" placeholder="Ahmedabad / Surat" />
+                </div>
+            </div>
+
+            <button type="submit" class="primary-btn">Scan Behaviour</button>
+        </form>
+
+        @if (ViewBag.Risk != null)
+        {
+            <div class="result-box @(((string)ViewBag.Level).ToLower())">
+                <h3>@ViewBag.Level</h3>
+                <div class="risk-bar">
+                    <div class="risk-fill" style="width:@ViewBag.Risk%"></div>
+                </div>
+                <p class="risk-text"><strong>@ViewBag.Risk%</strong> Risk</p>
+
+                <div class="details">
+                    <p><strong>Email:</strong> @ViewBag.Email</p>
+                    <p><strong>Login:</strong> @(((DateTime)ViewBag.LoginTime).ToString("dd MMM yyyy HH:mm"))</p>
+                    <p><strong>Device:</strong> @ViewBag.DeviceName (@ViewBag.DeviceType)</p>
+                    <p><strong>OS/Browser:</strong> @ViewBag.OS / @ViewBag.Browser</p>
+                    <p><strong>IP/Location:</strong> @ViewBag.IP / @ViewBag.Location</p>
+                </div>
+
+                <p class="result-msg">@ViewBag.Result</p>
+            </div>
+        }
+    </div>
+</section>

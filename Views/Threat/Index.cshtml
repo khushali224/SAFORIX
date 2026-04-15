@@ -1,0 +1,125 @@
+@model IEnumerable<SAFORIX.Models.ThreatContent>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Threat Intelligence";
+
+    var list        = Model?.ToList() ?? new List<SAFORIX.Models.ThreatContent>();
+    var contents    = list.ToDictionary(x => x.SectionKey, x => x);
+
+    string GetTitle(string key, string def) =>
+        contents.TryGetValue(key, out var c) && !string.IsNullOrEmpty(c.Title) ? c.Title : def;
+    string GetBody(string key, string def) =>
+        contents.TryGetValue(key, out var c) && !string.IsNullOrEmpty(c.Body) ? c.Body : def;
+
+    var threatRows      = list.Where(x => x.SectionKey.StartsWith("threat_")).OrderBy(x => x.SortOrder).ToList();
+    var protectionItems = list.Where(x => x.SectionKey.StartsWith("protection_") && x.SectionKey != "protection_title").OrderBy(x => x.SortOrder).ToList();
+    var tipItems        = list.Where(x => x.SectionKey.StartsWith("tip_")).OrderBy(x => x.SortOrder).ToList();
+}
+
+<link rel="stylesheet" href="~/css/Threat/threat.css" asp-append-version="true" />
+
+<!-- ═══════════════════════ HERO ═══════════════════════════ -->
+<section class="threat-hero">
+    <div class="threat-hero-inner">
+        <div class="threat-badge">⚠ Threat Intelligence</div>
+        <h1>🛡 @GetTitle("hero", "Threat Intelligence &amp; Security Awareness")</h1>
+        <p>@GetBody("hero", "Understand modern cyber threats and learn how SAFORIX protects you")</p>
+    </div>
+</section>
+
+<div class="threat-page-body">
+
+    <!-- ═══════════════════ THREAT TABLE ═══════════════════ -->
+    <section class="threat-table-section">
+        <div class="section-header">
+            <h2>⚡ Known Threats</h2>
+            <p class="section-sub">Active cyber threats monitored by SAFORIX</p>
+        </div>
+        <div class="table-wrapper">
+            <table class="threat-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Threat Type</th>
+                        <th>Description</th>
+                        <th>Risk Level</th>
+                        <th>Protection</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (threatRows.Any())
+                    {
+                        int i = 1;
+                        @foreach (var t in threatRows)
+                        {
+                            <tr>
+                                <td class="row-num">@(i++)</td>
+                                <td class="threat-name">@Html.Raw(t.Title ?? "")</td>
+                                <td class="threat-desc">@Html.Raw(t.Body ?? "")</td>
+                                <td><span class="badge-risk high">High</span></td>
+                                <td><span class="badge-protect">SAFORIX Active</span></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr><td class="row-num">1</td><td class="threat-name">🎣 Phishing Attacks</td><td class="threat-desc">Fake websites and emails designed to steal login credentials or personal data.</td><td><span class="badge-risk high">High</span></td><td><span class="badge-protect">SAFORIX Active</span></td></tr>
+                        <tr><td class="row-num">2</td><td class="threat-name">🦠 Malware &amp; Ransomware</td><td class="threat-desc">Malicious software that damages systems or locks files for ransom.</td><td><span class="badge-risk critical">Critical</span></td><td><span class="badge-protect">SAFORIX Active</span></td></tr>
+                        <tr><td class="row-num">3</td><td class="threat-name">🔗 Scam URLs</td><td class="threat-desc">Dangerous links redirecting to fake websites pretending to be legitimate.</td><td><span class="badge-risk high">High</span></td><td><span class="badge-protect">SAFORIX Active</span></td></tr>
+                        <tr><td class="row-num">4</td><td class="threat-name">🧠 Behaviour Anomalies</td><td class="threat-desc">Unusual login times, devices, or locations indicating account compromise.</td><td><span class="badge-risk medium">Medium</span></td><td><span class="badge-protect">SAFORIX Active</span></td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ════════════════ PROTECTION BOX ══════════════════ -->
+    <section class="protection-section">
+        <div class="protection-inner">
+            <h2>🔐 @GetTitle("protection_title", "How SAFORIX Protects You")</h2>
+            <ul class="protection-list">
+                @if (protectionItems.Any())
+                {
+                    @foreach (var p in protectionItems)
+                    {
+                        <li>@Html.Raw(!string.IsNullOrEmpty(p.Body) ? p.Body : p.Title ?? "")</li>
+                    }
+                }
+                else
+                {
+                    <li>✔ Real-time URL risk analysis with percentage scoring</li>
+                    <li>✔ Device security evaluation based on system configuration</li>
+                    <li>✔ Behaviour monitoring to detect suspicious activity</li>
+                    <li>✔ Centralized scan history for tracking all threats</li>
+                }
+            </ul>
+        </div>
+    </section>
+
+    <!-- ════════════════ CYBER TIPS GRID ══════════════════ -->
+    <section class="tips-section">
+        <div class="section-header">
+            <h2>⚠ @GetTitle("tips_title", "Cyber Safety Tips")</h2>
+            <p class="section-sub">Stay safe online with these essential practices</p>
+        </div>
+        <div class="tips-grid">
+            @if (tipItems.Any())
+            {
+                @foreach (var tip in tipItems)
+                {
+                    <div class="tip-card">💡 @Html.Raw(!string.IsNullOrEmpty(tip.Body) ? tip.Body : tip.Title ?? "")</div>
+                }
+            }
+            else
+            {
+                <div class="tip-card">💡 Always verify website URLs before clicking</div>
+                <div class="tip-card">💡 Avoid unknown email attachments</div>
+                <div class="tip-card">💡 Use strong and unique passwords</div>
+                <div class="tip-card">💡 Keep OS and antivirus updated</div>
+                <div class="tip-card">💡 Avoid public Wi-Fi for sensitive logins</div>
+                <div class="tip-card">💡 Enable two-factor authentication</div>
+            }
+        </div>
+    </section>
+
+</div>

@@ -1,0 +1,65 @@
+@model IEnumerable<SAFORIX.Models.PageContent>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Page Content";
+    var qPage = Context.Request.Query["pageKey"].ToString();
+}
+
+<link rel="stylesheet" href="~/css/Admin/admin-table.css" asp-append-version="true" />
+
+<section class="admin-page">
+    <div class="page-header">
+        <h1>Manage Page Content</h1>
+        <a asp-action="Create" class="btn-add"><i class="fa-solid fa-plus"></i> Add Content</a>
+    </div>
+
+    <form method="get" class="filter-form" style="margin-bottom:20px;">
+        <select name="pageKey" onchange="this.form.submit()" class="form-control" style="max-width:200px;display:inline-block;">
+            <option value="">All Pages</option>
+            <option value="Home" selected="@(ViewBag.SelectedPageKey == "Home")">Home</option>
+            <option value="AboutUs" selected="@(ViewBag.SelectedPageKey == "AboutUs")">About Us</option>
+            <option value="Services" selected="@(ViewBag.SelectedPageKey == "Services")">Services</option>
+            <option value="Threat" selected="@(ViewBag.SelectedPageKey == "Threat")">Threat</option>
+        </select>
+    </form>
+
+    <div class="table-wrapper">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Page</th>
+                    <th>Section</th>
+                    <th>Title</th>
+                    <th>Sort</th>
+                    <th>Active</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.PageKey</td>
+                            <td>@item.SectionKey</td>
+                            <td>@(item.Title ?? "-")</td>
+                            <td>@item.SortOrder</td>
+                            <td>@(item.IsActive ? "Yes" : "No")</td>
+                            <td class="actions">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn-edit"><i class="fa-solid fa-pen"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn-delete"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="7" class="no-data">No content found</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

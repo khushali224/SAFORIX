@@ -1,0 +1,140 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";   // ✅ Header & Footer included
+    ViewData["Title"] = "Device Scan";
+}
+
+<link rel="stylesheet" href="~/css/services/devicescan.css" asp-append-version="true" />
+
+<section class="device-scan-page">
+
+    <div class="scan-card">
+
+        <h1 class="scan-title">🖥 Device Security Scan</h1>
+        <p class="scan-subtitle">
+            Analyze device configuration and detect potential security risks
+        </p>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert error">@ViewBag.Error</div>
+        }
+
+        <form method="post" class="scan-form">
+
+            <div class="grid">
+
+                <div class="field">
+                    <label>Device Name</label>
+                    <input type="text" name="deviceName"
+                           placeholder="Office-PC-01" required />
+                </div>
+
+                <div class="field">
+                    <label>Device Type</label>
+                    <select name="deviceType" required>
+                        <option value="">Select</option>
+                        <option>PC</option>
+                        <option>Laptop</option>
+                        <option>Server</option>
+                        <option>Unknown</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Operating System</label>
+                    <input type="text" name="operatingSystem"
+                           placeholder="Windows 10 / Windows 11" />
+                </div>
+
+                <div class="field">
+                    <label>IP Address</label>
+                    <input type="text" name="ipAddress"
+                           placeholder="192.168.1.10" />
+                </div>
+
+                <div class="field checkbox">
+                    <input type="checkbox" id="firewallEnabled"
+                           name="firewallEnabled" value="true" checked />
+                    <label for="firewallEnabled">Firewall Enabled</label>
+                </div>
+
+                <div class="field checkbox">
+                    <input type="checkbox" id="antivirusEnabled"
+                           name="antivirusEnabled" value="true" checked />
+                    <label for="antivirusEnabled">Antivirus Enabled</label>
+                </div>
+
+                <div class="field checkbox">
+                    <input type="checkbox" id="diskEncryptionEnabled"
+                           name="diskEncryptionEnabled" value="true" />
+                    <label for="diskEncryptionEnabled">Disk Encryption Enabled</label>
+                </div>
+
+                <div class="field checkbox">
+                    <input type="checkbox" id="osUpToDate"
+                           name="osUpToDate" value="true" checked />
+                    <label for="osUpToDate">OS Up-to-date</label>
+                </div>
+
+                <div class="field checkbox danger">
+                    <input type="checkbox" id="suspiciousProcessesFound"
+                           name="suspiciousProcessesFound" value="true" />
+                    <label for="suspiciousProcessesFound">
+                        Suspicious Processes Found
+                    </label>
+                </div>
+
+                <div class="field checkbox danger">
+                    <input type="checkbox" id="unknownUsbDetected"
+                           name="unknownUsbDetected" value="true" />
+                    <label for="unknownUsbDetected">
+                        Unknown USB Detected
+                    </label>
+                </div>
+
+                <div class="field">
+                    <label>Open Ports Count</label>
+                    <input type="number" name="openPortsCount"
+                           min="0" max="65535" value="0" required />
+                </div>
+
+            </div>
+
+            <button type="submit" class="primary-btn">
+                Run Device Scan
+            </button>
+
+        </form>
+
+        @if (ViewBag.Risk != null)
+        {
+            <div class="result-box @(((string)ViewBag.Level).ToLower())">
+
+                <div class="result-header">
+                    <h3>@ViewBag.Level</h3>
+                    <span class="risk-percent">@ViewBag.Risk%</span>
+                </div>
+
+                <div class="risk-bar">
+                    <div class="risk-fill"
+                         style="width:@ViewBag.Risk%"></div>
+                </div>
+
+                <p class="risk-text">
+                    <strong>@ViewBag.Risk%</strong> Security Risk Detected
+                </p>
+
+                <p class="result-msg">@ViewBag.Result</p>
+
+                <div class="details">
+                    <p><strong>Device:</strong> @ViewBag.DeviceName (@ViewBag.DeviceType)</p>
+                    <p><strong>Operating System:</strong> @ViewBag.OS</p>
+                    <p><strong>IP Address:</strong> @ViewBag.IP</p>
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</section>

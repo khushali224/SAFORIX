@@ -1,0 +1,32 @@
+@model string
+<footer class="saforix-footer">
+    <div class="footer-grid"></div>
+    <div class="footer-container">
+        <div class="footer-brand">
+            <div class="footer-logo">🛡</div>
+            <h2>SAFORIX</h2>
+        </div>
+        <div class="footer-links">
+            <h4>Platform</h4>
+            <a asp-controller="Home" asp-action="Index">Home</a>
+            <a asp-controller="About" asp-action="Index">About Us</a>
+            <a asp-controller="Threat" asp-action="Index">Threat Intelligence</a>
+        </div>
+        <div class="footer-links">
+            <h4>Services</h4>
+            <a asp-controller="Services" asp-action="UrlScan">URL Scan</a>
+            <a asp-controller="Services" asp-action="DeviceScan">Device Scan</a>
+            <a asp-controller="Services" asp-action="BehaviourScan">Behaviour Scan</a>
+        </div>
+        <div class="footer-links">
+            <h4>Security</h4>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Responsible Disclosure</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>@Model</span>
+        <span class="status"><span class="dot"></span> System Active</span>
+    </div>
+</footer>

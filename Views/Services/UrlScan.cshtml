@@ -1,0 +1,49 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "URL Scan";
+}
+
+<link rel="stylesheet" href="~/css/services/urlscan.css" asp-append-version="true" />
+
+<section class="urlscan-page">
+
+    <div class="scan-card">
+
+        <h1 class="scan-title">🔗 URL Security Scanner</h1>
+        <p class="scan-subtitle">Analyze web links for malicious content</p>
+
+        <form method="post" class="scan-form">
+            <input type="url" name="url" placeholder="https://example.com" required />
+            <button type="submit">Scan</button>
+        </form>
+
+        @if (ViewBag.Error != null)
+        {
+            <p class="error-msg">@ViewBag.Error</p>
+        }
+
+        @if (ViewBag.Risk != null)
+        {
+            <div class="result-box @(((string)ViewBag.Level).ToLower().Replace(" ", "-"))">
+
+                <div class="result-header">
+                    <h3>@ViewBag.Level</h3>
+                    <span class="risk-percent">@ViewBag.Risk%</span>
+                </div>
+
+                <p class="scanned-url">@ViewBag.Url</p>
+
+                <div class="risk-bar">
+                    <div class="risk-fill @(((string)ViewBag.Level).ToLower().Replace(" ", "-"))"
+                         style="width:@ViewBag.Risk%"></div>
+                </div>
+
+                <ul class="analysis-list">
+                    <li>@ViewBag.Result</li>
+                </ul>
+
+            </div>
+        }
+    </div>
+
+</section>

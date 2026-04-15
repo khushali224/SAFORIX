@@ -1,0 +1,68 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home";
+
+    var hero     = ViewBag.Hero     as SAFORIX.Models.HomeHero;
+    var features = ViewBag.Features as List<SAFORIX.Models.HomeFeature>
+                   ?? new List<SAFORIX.Models.HomeFeature>();
+}
+
+<link rel="stylesheet" href="~/css/home/home.css" asp-append-version="true" />
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="hero-section">
+    <div class="hero-bg-particles"></div>
+    <div class="hero-content">
+
+        <!-- Shield Logo (Center Top) -->
+        <div class="hero-logo-box">
+            <span class="hero-logo-icon">🛡</span>
+        </div>
+
+        <div class="hero-badge">🛡 Cyber Security Platform</div>
+        <h1 class="hero-title">@(hero?.MainTitle ?? "SAFORIX")</h1>
+        <p class="hero-subtitle">@(hero?.SubTitle ?? "Security Analysis Framework")</p>
+        <p class="hero-desc">@(hero?.Description ?? "Advanced threat detection powered by real-time URL analysis, device security scanning, and intelligent behaviour monitoring.")</p>
+        
+        <div class="hero-stats">
+            <div class="stat"><span class="stat-num">3+</span><span class="stat-lbl">Scan Modules</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><span class="stat-num">100%</span><span class="stat-lbl">Secure</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><span class="stat-num">Real-time</span><span class="stat-lbl">Analysis</span></div>
+        </div>
+
+
+    </div>
+</section>
+
+<!-- ═══════════════════════ FEATURES ═══════════════════════════ -->
+<section class="features-section">
+    <div class="section-header">
+        <h2 class="section-title">Why Choose SAFORIX?</h2>
+        <p class="section-sub">Comprehensive security tools designed to protect you at every level</p>
+    </div>
+    <div class="features-grid">
+        @if (features.Any())
+        {
+            @foreach (var f in features)
+            {
+                <div class="feature-card">
+                    <div class="feature-icon">@f.Icon</div>
+                    <h3>@f.Title</h3>
+                    <p>@f.Description</p>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="feature-card"><div class="feature-icon">⚡</div><h3>Real-time Analysis</h3><p>Instant threat detection across URLs, devices, and behaviour patterns.</p></div>
+            <div class="feature-card"><div class="feature-icon">🔒</div><h3>Secure Processing</h3><p>All scans processed securely with zero data retention after analysis.</p></div>
+            <div class="feature-card"><div class="feature-icon">👁</div><h3>Behaviour Detection</h3><p>Monitor login patterns and flag anomalies before they become threats.</p></div>
+            <div class="feature-card"><div class="feature-icon">🛡</div><h3>URL Shield</h3><p>Evaluate links in real time with detailed risk percentage scoring.</p></div>
+            <div class="feature-card"><div class="feature-icon">🖥</div><h3>Device Guard</h3><p>Comprehensive hardware and software security audit for your device.</p></div>
+            <div class="feature-card"><div class="feature-icon">📊</div><h3>Threat Reports</h3><p>Detailed actionable reports to understand and resolve identified security risks.</p></div>
+        }
+    </div>
+</section>
+
